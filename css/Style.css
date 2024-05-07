@@ -1,0 +1,755 @@
+* {
+    text-transform: uppercase;
+}
+
+label,
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.ErrColor {
+    color: red;
+    font-size: 10PX;
+    display: none;
+}
+
+.FontName {
+    font-size: 12px;
+    font-family: Cambria;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.BgColor {
+    background-color: rgb(25, 135, 84);
+}
+
+.inputStyle {
+    border: none;
+    border-bottom: 3px solid rgb(25, 135, 84);
+    border-radius: 15px 50px 30px;
+    background: white;
+    padding: 2px;
+    text-transform: uppercase;
+    font-family: Cambria;
+    width: 100%;
+    font-weight: bold;
+    font-size: 12px;
+    height: 28px;
+}
+
+input {
+    outline: none;
+}
+
+input:hover,
+a:hover,
+li:hover,
+select:hover,
+button:hover,
+img:hover {
+    -webkit-box-shadow: 3px 2px 19px -7px rgb(135, 25, 51);
+    box-shadow: 3px 2px 19px -7px rgb(135, 25, 113);
+    border: 0px solid rgb(128, 25, 135);
+}
+
+li:focus,
+a:focus,
+input:focus,
+select:focus,
+button:focus,
+img:focus {
+    outline: none;
+    -webkit-box-shadow: 3px 2px 19px -7px rgb(126, 25, 135);
+    box-shadow: 3px 2px 19px -7px rgb(135, 25, 106);
+    border: 0px solid rgb(135, 25, 113);
+}
+
+input[type="checkbox"]:focus,
+input[type="checkbox"]:hover {
+    border: 1px solid rgb(135, 25, 124);
+    box-shadow: 0px 0px 5px rgb(135, 25, 135);
+    border-radius: 5px;
+}
+
+.Dropdown {
+    border-radius: 15px 50px 30px;
+    background: white;
+    padding: 2px;
+    text-transform: uppercase;
+    font-family: Cambria;
+    width: 100%;
+    font-weight: bold;
+    font-size: 13px;
+    height: 28px;
+    border: none;
+    border-bottom: 3px solid rgb(25, 135, 84);
+
+}
+
+.InpaymentBtns {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.InpaymentBtns a,
+.InpaymentBtns button {
+    list-style: none;
+    width: 120px;
+    background-color: rgb(25, 135, 84);
+    padding: 6px 8px;
+    text-align: center;
+    font-size: 10px;
+    border: 0px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: 800;
+}
+
+li {
+    list-style: none;
+}
+
+.InpaymentListDrop {
+    display: flex;
+    justify-content: end;
+}
+
+
+.InpaymentSearchBars {
+    margin-top: 20px;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 40px;
+    /* justify-content: space-around; */
+}
+
+.InpaymentSearchBars:last-child {
+    justify-self: flex-end;
+}
+
+#SubmitH {
+    background-color: indianred;
+}
+
+.btn1 {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    display: inline-block;
+    padding: 6px 20px;
+    font-size: 10px;
+    text-align: center;
+    cursor: pointer;
+    font-family: Cambria;
+    text-transform: uppercase;
+    border: 0px;
+    border-radius: 5px;
+}
+.hidden-row {
+    display: none;
+}
+
+.HeadChange {
+    background-color: white;
+    color: rgb(25, 135, 84);
+    padding: 10px 10px 10px 6px;
+}
+
+.HeadBtn {
+    padding-top: 10px;
+    padding-right: 10px;
+    height: 54px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.ExitButton {
+    color: white;
+    background-color: rgb(25, 135, 84);
+    padding: 10px 20px 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.InpaymentNewStyles {
+    background-color: cornsilk;
+
+}
+
+.NewBtns {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    border: 2px solid rgb(56, 80, 240);
+    border-radius: 10px 0px;
+    border-bottom-width: 0px;
+    height: 30px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    width: 90px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.HeadTabStyle {
+    background-color: rgb(25, 135, 84);
+    color: white;
+}
+
+.HeadTabStyleChange {
+    background-color: cornsilk;
+    color: black;
+}
+
+.Borderdiv {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    height: 20px;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px 50px 30px;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Cambria;
+}
+.Borderuploaddiv {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    height: 20px;
+    width: 20%;
+    text-align: center;
+    border-radius: 5px 30px 10px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Cambria;
+}
+
+.inputChooseFile {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    text-transform: uppercase;
+    font-family: Cambria;
+    font-size: 10px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.ButtonClick {
+    border: none;
+    background-color: rgb(25, 135, 84);
+    color: white;
+    padding: 6px 26px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.ButtonClick:hover {
+    border: 1px solid #0dd;
+}
+
+.MoveOnButtons {
+    border: none;
+    background-color: rgb(25, 135, 84);
+    color: white;
+    padding: 1px 26px;
+    width: 100%;
+    border-radius: 10px 0px 10px 0px;
+    font-weight: Bold;
+    font-size: 16px;
+
+}
+
+
+
+.ErrorColor {
+    color: rgb(254, 46, 46);
+    font-size: 10px;
+    display: none;
+}
+
+form img,
+i {
+    cursor: pointer;
+}
+
+.OutCasc3,
+.OutCasc4,
+.OutCasc5,
+.OutItemCascHide,
+.PackingDetails,
+.OutLotId,
+.ShippingMark,
+.OutAeoClass,
+.OutCwcClass,
+.OutStsClass,
+.OutSeaStoreClass,
+.OutStsCwcClass,
+.OutInterNationalClass {
+    display: none;
+}
+
+.SummaryCheckBoxClass {
+    padding: 10px 10px 10px 10px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.CargoSeaShow,
+.CargoRailShow,
+.CargoAirShow {
+    display: none;
+}
+
+#inpaymentTable {
+    font-size: 10px;
+}
+
+#InonPaymentTable {
+    font-size: 10px;
+}
+
+#InonPaymentTable tbody tr:hover {
+    background-color: rgb(197, 246, 223);
+}
+
+#ShowColumns {
+    background-color: rgb(25, 135, 84);
+    color: white;
+}
+
+table thead:hover {
+    background-color: rgb(0, 79, 42);
+}
+
+table tbody tr:hover {
+    background-color: rgb(197, 246, 223);
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.HighLight {
+    background-color: #a6e3ad;
+}
+
+#summar1 input {
+    width: 70%;
+    color: red !important;
+}
+#summarycoo input {
+    width: 70%;
+    color: black !important;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    margin-right: 10px; /* Adjust the margin as needed */
+}
+
+
+.FinalCheckBoxStyle {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    border-radius: 5px !important;
+    padding: 10px !important;
+}
+
+.FinalClassPopup {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: rgba(50, 41, 41, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100001;
+    position: fixed;
+}
+
+#Loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.LoadImg {
+    border: 16px dotted #f6f;
+    border-radius: 50%;
+    border-top-color: #0e0;
+    border-right-color: #0dd;
+    border-bottom-color: #f90;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.PopUpTableClass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    z-index: 9999;
+    border: rgb(25, 135, 84) 3px solid;
+    height: 60%;
+    width: 60%;
+    border-radius: 8px;
+}
+
+.PopUptd {
+    text-align: center !important;
+    font-size: 10px !important;
+    width: 100%;
+    text-align: center;
+}
+
+.PopErrorClass {
+    width: 100%;
+    height: 6vh;
+    background-color: rgb(25, 135, 84);
+}
+
+.PopErrorbottom {
+    width: 100%;
+    height: 6vh;
+    background-color: rgb(25, 135, 84);
+    position: absolute;
+    bottom: 0px;
+    /* for bottom gap */
+    left: 0px;
+    width: 100%;
+}
+
+.PopupClose {
+    background-color: #fff;
+    color: rgb(25, 135, 84);
+    margin-top: 12px !important;
+    text-align: center;
+}
+
+#inpaymentTable img {
+    cursor: pointer;
+}
+
+.ChangeBtns {
+    background-color: rgb(25, 135, 84);
+}
+
+.disable {
+    cursor: default !important;
+}
+
+.DisableClass {
+    display: none !important;
+}
+
+#ImporterPopUp,
+#InwardPopUp,
+#ClaimantPopUp,
+#FreightPopUp,
+#LoadingPopUp,
+#ReciptPopUp,
+#ReleasePopUp,
+#SupplierPopUp,
+#InvoiceImportPopUp,
+#CountryPopUp {
+    display: none;
+}
+
+#inpaymentTable tbody tr:hover {
+    font-size: 10px;
+    background-color: rgb(153, 251, 194);
+    color: rgb(16, 48, 2);
+}
+
+/*----------------------------------------------------------------INONPAYEMNT ----------------------------------------------------------------*/
+.InnonPayemnt-list-Buttons {
+    padding: 20px 20px;
+}
+
+.InnonPayemnt-list-Buttons .First-row,
+.InnonPayemnt-list-Buttons .Second-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+
+.InnonPayemnt-list-Buttons button {
+    border: none;
+    background-color: rgb(25, 135, 84);
+    height: 30px;
+    width: 120px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+
+    &:hover {
+        border: 1px solid #0dd;
+    }
+}
+
+.InnonPayemnt-list-Buttons a {
+    background-color: rgb(25, 135, 84);
+    height: 30px;
+    width: 120px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 800;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 7px;
+
+    &:hover {
+        border: 1px solid #0dd;
+    }
+}
+
+.InonPayment-list-ShowColumns {
+    padding: 20px 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#InnonListShowColumns {
+    width: 150px;
+    padding: 8px 20px;
+    border: none;
+    background-color: rgb(25, 135, 84);
+    color: #fff;
+    border-radius: 6px;
+}
+
+.InonPayment-list-ScndButton {
+    padding: 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.InonPayment-list-ScndButton label {
+    margin-top: 4px;
+}
+
+#InnonPaymentNoofRows {
+    margin-left: 10px;
+}
+
+.InonPayment-list-ScndButton div {
+    margin-left: auto;
+}
+
+.InnonPayment-Table {
+    padding: 20px 20px;
+}
+
+.Container {
+    margin: 50px 80px;
+    background-color: cornsilk;
+}
+
+.NewBtns1 {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    border: 2px solid rgb(56, 80, 240);
+    border-radius: 10px 0px;
+    border-bottom-width: 0px;
+    height: 30px;
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    width: 120%;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.SearchPopUp {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(50, 41, 41, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100001;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.centerPopUp {
+    height: 70vh;
+    width: 60vw;
+    background-color: rgb(252, 252, 252);
+    border-radius: 6px;
+    border: 2px solid rgb(25, 135, 84);
+    /* padding: 20px; */
+}
+
+.centerPopUp h1 {
+    background-color: rgb(25, 135, 84) !important;
+    color: #fff !important;
+    font-size: 30px;
+    text-align: center;
+    padding: 1rem;
+
+}
+
+.centerPopUp h1 {
+    background-color: #fff;
+    color: black;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.FinalValidationBG {
+    background: rgba(50, 41, 41, 0.5);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+}
+
+.FinalValidationBox {
+    background-color: #fff;
+    height: 450px;
+    width: 600px;
+    border-radius: 10px;
+    border: 4px solid green;
+    font-size: 16px;
+    font-family: Cambria;
+    text-transform: uppercase;
+    font-weight: bold;
+
+}
+
+.FinalHead {
+    padding: 0px;
+    margin: 0px;
+    background-color: rgb(25, 135, 84);
+    color: #fff;
+    text-align: center;
+    font-size: 30px;
+    height: 50px;
+}
+
+.FinalValidationBGhr {
+    background-color: rgb(105, 94, 94);
+    padding: 0.00001px;
+    margin-top: 40px;
+}
+
+.FinalH1 {
+    font-size: 12px;
+    text-align: center;
+}
+
+
+.ShowBtnClass {
+    background-color: rgb(246, 255, 223);
+    cursor: default;
+}
+
+.OutListButton {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.OutHeadBts {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    border: none;
+    padding: 4px 16px;
+    width: 130px;
+    border-radius: 4px;
+}
+
+.OutListButton1 {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+#CopyImporterbtn,
+.CopyImporterbtn1 {
+    background-color: rgb(25, 135, 84);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+}
+
+span1 {
+    color: red;
+    display: none;
+    font-size: 8px;
+}
+
+.errorIntimationSummary {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    color: red;
+}
