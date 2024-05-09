@@ -1,0 +1,994 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background: url("{% static 'IMG/bgfin.jpg' %}");
+        }
+    </style>
+    <title>KTTAPP</title>
+    <link rel="icon" type="image/png" href='{% static "IMG/fav.png" %}' />
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}">
+    <!--
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    -->
+    <link href="{% static 'css/Bootstrap.css' %}" rel="stylesheet">
+    <script src="{% static 'js/BootstrapJs.js'%}"></script>
+    <script src="{% static 'js/jquery.js'%}"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Delete Button Icon Package-->
+
+    <!-- AutoComplete Packages -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/JqueryAutocomplete.css' %}">
+    <!-- AutoComplete Packages -->
+
+    <!-- DataTable Packages -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <!-- DataTable Packages -->
+</head>
+
+<body class="FontName">
+    <script src="{% static 'js/InpaymentJs/InpaymentJs.js'%}"></script>
+    <nav class="navbar navbar-expand-lg BgColor"
+        style=" position: -webkit-sticky; position: sticky;top: 0;z-index: 100;" id="HeadIndex">
+        <div class="container-fluid">
+            <a class="navbar-brand " href="#" style="color: white;">KTT</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll" style="height: 40px;">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                    <li class="nav-item HeadBtn">
+                        <a class="nav-link" href="#" style="color: white;">DASHBOARD</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="INPAYMENT">
+                        <a class="nav-link" href="/InpaymentList/" style="color: white;">INPAYMENT</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="INNONPAYMENT">
+                        <a class="nav-link" href="/InonPaymentList/" style="color: white;">IN NON-PAYMENT</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="OUT">
+                        <a class="nav-link" href="/OutList/" style="color: white;">OUT</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="TRANSHIPMENT">
+                        <a class="nav-link" href="/Transhipment/" style="color: white;">TRANSHIPMENT</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="COOLIST">
+                        <a class="nav-link" href="/coolist/" style="color: white;">COO</a>
+                    </li>
+                    <li class="nav-item HeadBtn" id="HSCODEFINDER">
+                        <a class="nav-link" href="/hscodelist/"  style="color: white;">HS CODE FINDER</a>
+                    </li>
+                    <li class="nav-item HeadBtn">
+                        <a class="nav-link" href="#" style="color: white;">APR HS CODE FINDER</a>
+                    </li>
+                </ul>
+                <div class="row mt-3">
+                    <div class="text-light">
+                        <p id="sg-time"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-light">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    id="MainUser" aria-expanded="false" style="color: white;">WELCOME
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                    </svg>&nbsp;&nbsp;&nbsp;&nbsp;{{UserName}}</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/" style="margin-right: 20px;">LOGOUT</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% csrf_token %}
+    <div class="FinalClassPopup" id="Loading">
+        <div class="LoadImg"></div>
+    </div>
+    <!-- <div class="container-fluid text-danger text-center">
+        <div class="row mt-3">
+            <div class="btn-group">
+                <a href="/InpaymentNew/NEW/" style="width: 140px;font-size:10px;text-decoration: none;"
+                    class="btn1">New</a>&nbsp;&nbsp;
+                <input id="SubmitH" type="button" value="TRANSMIT" class="btn1"
+                    style="width: 140px;font-size:10px;background-color: indianred;" onclick="XmlSubmit()">&nbsp;&nbsp;
+                <input id="PrintGstH" type="button" value="PRINT GST" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="InpaymentPrintGst()">&nbsp;&nbsp;
+                <input id="PrintRefundH" type="button" value="PRINT REFUND" class="btn1"
+                    style="width: 140px;font-size:10px;">&nbsp;&nbsp;
+                <input id="CopyH" type="button" value="COPY" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="InpaymentCopyData('COPY')">&nbsp;&nbsp;
+                <input id="RefundH" type="button" value="REFUND" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="InpaymentCopyData('REFUND')">&nbsp;&nbsp;
+                <input id="AmendH" type="button" value="AMEND" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="InpaymentCopyData('AMEND')">&nbsp;&nbsp;
+                <input id="CancelH" type="button" value="CANCEL" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="InpaymentCopyData('CANCEL')">&nbsp;&nbsp;
+                <input id="PrintStatusH" type="button" value="PRINT STATUS" class="btn1"
+                    style="width: 140px;font-size:10px;" onclick="PrintStatus()">&nbsp;&nbsp;
+                <input id="DownloadCcpH" type="button" value="DOWNLOAD CCP" class="btn1"
+                    style="width: 140px;font-size:10px;" onclick="DownloadCcp()">&nbsp;&nbsp;
+                <input id="DownloadDataH" type="button" value="DOWNLOAD DATA" class="btn1"
+                    style="width: 140px;font-size:10px;" onclick="DownloadData()">&nbsp;&nbsp;
+                <input id="DeleteAllH" type="button" value="DELETE ALL" class="btn1"
+                    style="width: 140px;font-size:10px;" onclick="DeleteAll()">&nbsp;&nbsp;
+            </div>
+            <div class="btn-group mt-3"> 
+                <input id="MergeH" type="button" value="MERGE" class="btn1"
+                    style="width: 140px;font-size:10px;">&nbsp;&nbsp;
+                <input id="UnMergeH" type="button" value="UNMERGE" class="btn1"
+                    style="width: 140px;font-size:10px;">&nbsp;&nbsp;
+                <input id="PrintCcpH" type="button" value="PRINT CCP" class="btn1" style="width: 140px;font-size:10px;"
+                    onclick="CpcPdfGenarate()">&nbsp;&nbsp;
+            </div>
+        </div>
+    </div> -->
+    <div class="InpaymentBtns">
+        <a href="/InpaymentNew/NEW/">NEW</a>
+        <button type="button" onclick="XmlSubmit()" id="SubmitH">TRANSMIT</button>
+        <button type="button" onclick="InpaymentCopyData('COPY')" id="CopyH">COPY</button>
+        <button type="button" onclick="DownloadData()" id="DownloadDataH">DOWNLOAD DATA</button>
+        <a href="" id="MergeH">MERGE</a>
+        <a href="" id="UnMergeH">UNMERGE</a>
+    </div>
+    <ul class="InpaymentListDrop">
+        <li>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                    id="ShowColumns">
+                    ShowColumns
+                </button>
+                <ul class="dropdown-menu dropdown-menu-light">
+                    {% for Custom in CustomiseReport %}
+                    {% if Custom.FiledValue == "True" %}
+                    <li><input type="checkbox" id="{{Custom.FiledName}}" checked value="{{Custom.FiledName}}"
+                            onclick="HtaHide('{{Custom.Sno}}','{{Custom.FiledName}}')">&nbsp;<label
+                            for="{{Custom.FiledName}}">{{Custom.FiledName}}</label></li>
+                    {% else %}
+                    <li><input type="checkbox" id="{{Custom.FiledName}}" value="{{Custom.FiledName}}"
+                            onclick="HtaHide('{{Custom.Sno}}','{{Custom.FiledName}}')">&nbsp;<label
+                            for="{{Custom.FiledName}}">{{Custom.FiledName}}</label></li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="InpaymentSearchBars">
+        <li>NO OF ROWS</li>
+        <li>
+            <select class="Dropdown" id="inpaymentLength">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="50000">all</option>
+            </select>
+        </li>
+        <li>
+            <select class="Dropdown" id="MailBoxCopyId">
+                {% for i in ManageUserMail %}
+                <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select>
+        </li>
+        <li>
+            <button class="btn1" type="button" onclick="TransmitDataFunction('InNonpayment')">TransmitData</button>
+        </li>
+        <li>SEARCH</li>
+        <li>
+            <input type="text" class="inputStyle" id="searchInpaymentTableID">
+        </li>
+        <li>
+            <input type="checkbox" class="inputStyleCheckBox" id="g1Check">
+            <label for="g1Check">G1</label>
+        </li>
+        <li>
+            <input type="checkbox" id="InnonPaymentCheck" onclick=InnonPaymentCheckFunction()>
+            <label for="InnonPaymentCheck">INNON PAYMENT</label>
+        </li>
+
+        <li>
+            <ul style="display: flex;justify-content: center;align-items: center;gap: 10px;">
+                <li>FILTER PERMITS</li>
+                <li>
+                    <select class="Dropdown" onchange="filterPermits()" id="filterPermitsId">
+                        <option value="">all</option>
+                        <option value="NEW">new</option>
+                        <option value="DRF">draft</option>
+                        <option value="APR">approved</option>
+                        <option value="AME">Amend</option>
+                        <option value="CNL">Cancel</option>
+                        <option value="RFD">Refund</option>
+                        <option value="QRY">query</option>
+                        <option value="PEN">pending</option>
+                        <option value="REJ">reject</option>
+                        <option value="ERR">error</option>
+                        <option value="DEL">delete</option>
+                    </select>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <div class="row" id="OnclickInnonPayMent" style="display: none;">
+        <div class="row">
+            <div class="col-2">
+                <select class="Dropdown" id="InNonMailBoxCopyId">
+                    <option selected>--SELECT--</option>
+                    {% for i in InondeclarationTypeValue %}
+                    <option>{{i.Name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-1">
+                <button class="btn1" type="button" style="text-decoration: none;width: 100%;"
+                    onclick="TransmitDataFunction('InNonpayment')">TransmitData</button>
+            </div>
+        </div>
+    </div>
+    <table id="inpaymentTable" style="font-size: 10px;">
+        <thead>
+            <tr>
+                <th style="padding: 3px;"><input type="checkbox" onclick="ListAllCheckSubmit()"
+                        id="ListAllCheckSubmitId"></th>
+                <th style="padding: 3px;">DELETE</th>
+                <th style="padding: 3px;">EDIT</th>
+                <th style="padding: 3px;">VIEW</th>
+                <th>JOB ID</th>
+                <th>MSG ID</th>
+                <th>DECDATE</th>
+                <th>DECTYPE</th>
+                <th>CREATE</th>
+                <th>DECID</th>
+                <th style="padding: 2px 30px;">ETA</th>
+                <th>PERMITNO</th>
+                <th style="padding: 2px 100px;">IMPORTER</th>
+                <th style="padding: 2px 40px;">HAWB</th>
+                <th>MAWB/OBL</th>
+                <th>POL</th>
+                <th>MSGTYPE</th>
+                <th>TPT</th>
+                <th>PREPMT</th>
+                <th>XREF</th>
+                <th>INTREM</th>
+                <th>GSTAMT</th>
+                <th>STATUS</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle"></th>
+                <th><input type="text" class="inputStyle" id="statusFilterInput"></th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <script>
+        var listBoxData;
+        $(document).ready(function () {
+            $('#Loading').hide();
+            var table = $('#inpaymentTable').DataTable({
+                "ajax": {
+                    "processing": true,
+                    "url": "/InpaymentHeaderUrl/",
+                    "dataSrc": "",
+                },
+                "initComplete": function (data) {
+                    listBoxData = data.json;
+                    // console.log(listBoxData);
+                    table.rows().every(function () {
+                        var data = this.data();
+                       if(data.STATUS==='DEL'){
+                            $(this.node()).addClass('hidden-row');
+                        }
+                        
+                    });
+                },
+                "dom": 'rtip',
+                "columns": [{
+                    "data": "id"
+                },
+                {
+                    "data": "id"
+                },
+                {
+                    "data": "PermitId"
+                },
+                {
+                    "data": "PermitId"
+                },
+                {
+                    "data": "JobId"
+                },
+                {
+                    "data": "MSGId"
+                },
+                {
+                    "data": "DECDATE"
+                },
+                {
+                    "data": "DECTYPE"
+                },
+                {
+                    "data": "CREATE"
+                },
+                {
+                    "data": "DECID"
+                },
+                {
+                    "data": "ETA"
+                },
+                {
+                    "data": "PERMITNO"
+                },
+                {
+                    "data": "IMPORTER"
+                },
+                {
+                    "data": "HAWB"
+                },
+                {
+                    "data": "MAWBOBL"
+                },
+                {
+                    "data": "POL"
+                },
+                {
+                    "data": "MSGTYPE"
+                },
+                {
+                    "data": "TPT"
+                },
+                {
+                    "data": "PREPMT"
+                },
+                {
+                    "data": "XREF"
+                },
+                {
+                    "data": "INTREM"
+                },
+                {
+                    "data": "GSTAMT"
+                },
+                {
+                    "data": "STATUS"
+                },
+                ],
+                "ordering": false,
+                "autoWidth": false,
+                'columnDefs': [{
+                    'targets': 0,
+                    'width': "2",
+                    'searchable': false,
+                    'orderable': false,
+                    'render': function (data, type, full, meta) {
+                        return `<input type="checkbox" id="${data}" class="inpaymentCheck" name="inpaymentCheck" value="${full.PermitId}" onchange="if (this.checked) { listChcekBoxFunction(); } else { listChcekBoxFunction(); }">`;
+                    }
+                },
+                {
+                    'targets': 1,
+                    "className": "text-center",
+                    'render': function (data, type, full, meta) {
+                        return `<i class="fa-solid fa-trash-can" style="color: #ff0000;" onclick = "ClickedFunction('${data}')"></i>`
+                    }
+                },
+                {
+                    'targets': 2,
+                    "width": "5",
+                    "className": "text-center",
+                    'render': function (data, type, full, meta) {
+                        if (full.STATUS == "NEW" || full.STATUS == "DRF") {
+                            return `<i class="fa-regular fa-pen-to-square" style="color: #ff0000;" onclick = "InpaymentEdit('${data}')"></i>`
+                        } else {
+                            return `<i class="fa-regular fa-pen-to-square" style="color: #ff0000;" ></i>`
+                        }
+                    }
+                },
+                {
+                    'targets': 3,
+                    "width": "10",
+                    "className": "text-center",
+                    'render': function (data, type, full, meta) {
+                        return `<i class="fa-regular fa-eye" style="color: #ff0000;" onclick = "InpaymentShow('${data}')" ></i>`
+                    }
+                },
+                {
+                    // "width": "50px",
+                    "targets": [4, 9, 16, 17, 18, 19],
+                    "className": "text-center",
+                    "visible": false,
+                },
+                {
+                    // "width": "50px",
+                    "targets": 5,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "40px",
+                    "targets": 6,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "30px",
+                    "targets": 7,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "100px",
+                    "targets": 11,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "150px",
+                    "targets": 9,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "50px",
+                    "targets": 10,
+                    "className": "text-center"
+                },
+                {
+                    // "width": "300px",
+                    "targets": 12,
+                },
+                {
+                    // "width": "100px",
+                    "targets": 16,
+                },
+                ],
+            });
+            $('#inpaymentLength').on('change', function () {
+                var selectedValue = $(this).val();
+                $('#inpaymentTable').DataTable().page.len(selectedValue).draw();
+            });
+
+
+            $('#statusFilterInput').on('keyup change', function() {
+                var filterValue = $(this).val().toUpperCase(); 
+            
+                if (filterValue === '') {
+                    table.rows().every(function ()  {
+                        if (this.data().STATUS.toUpperCase() !== 'DEL') {
+                            $(this.node()).removeClass('hidden-row');
+                        } else {
+                            $(this.node()).addClass('hidden-row');
+                        }
+                    });
+                } else {
+                    table.rows().every(function ()  {
+                        var data = this.data();
+                        var status = data.STATUS.toUpperCase();
+                        if (filterValue === 'DEL') {
+                            if (status === 'DEL') {
+                                $(this.node()).removeClass('hidden-row');
+                            } else {
+                                $(this.node()).addClass('hidden-row');
+                            }
+                        } else {
+                            if (status.includes(filterValue)) {
+                                $(this.node()).removeClass('hidden-row');
+                            } else {
+                                $(this.node()).addClass('hidden-row');  
+                            }
+                        }
+                    });
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            $("#inpaymentTable tfoot tr input").on('keyup change', function () {
+                table
+                    .column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+            });
+            $('#searchInpaymentTableID').keyup(function () {
+                table.search($(this).val()).draw();
+            });
+
+        });
+
+        function ClickedFunction(arg) {
+        }
+
+        function HtaHide(val1, ID) {
+            let cbox = document.getElementById(ID);
+            var table = $('#inpaymentTable').DataTable();
+            if (cbox.checked) {
+                table.column(Number(val1) + 3).visible(true);
+            } else {
+                table.column(Number(val1) + 3).visible(false);
+            }
+        }
+
+        function searchInpaymentTable(arg) {
+            $('#inpaymentTable').DataTable().search(arg).draw();
+        }
+
+        function filterPermits() {
+            $('#footlastInput').val($("#filterPermitsId").val());
+
+            var selectedValue = $('#filterPermitsId').val();
+
+            var dataTable = $('#inpaymentTable').DataTable();
+            dataTable.column(22).search(selectedValue).draw();
+        }
+
+        function ListAllCheckSubmit() {
+            let check = document.getElementById("ListAllCheckSubmitId")
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (check.checked) {
+                    i.checked = true;
+                } else {
+                    i.checked = false;
+                }
+            }
+            listChcekBoxFunction();
+        }
+
+        function listChcekBoxFunction() {
+            var listCheck = [];
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    listCheck.push(i.value);
+                }
+            }
+            $("#NewBtnH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#SubmitH").prop("disabled", false).css("background-color", 'indianred');
+            $("#PrintGstH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#PrintRefundH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#CopyH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#RefundH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#AmendH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#CancelH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#PrintStatusH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#DownloadCcpH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#DownloadDataH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#DeleteAllH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#MergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#UnMergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            $("#PrintCcpH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+            PermitNum = listCheck[0];
+            var TruecheckBox = [];
+            for (var per of listBoxData) {
+                for (var i = 0; i < listCheck.length; i++) {
+                    if (listCheck[i] == per.PermitId) {
+                        TruecheckBox.push(per.STATUS);
+                    }
+                }
+                if (listCheck.length == 1) {
+                    if (per.PermitId == PermitNum && (per.STATUS == "APR" || per.STATUS == "AME")) {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#SubmitH").prop("disabled", true).addClass("btnhide").css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintStatusH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                    if (per.PermitId == PermitNum && (per.STATUS == "DEL" || per.STATUS == "ERR")) {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#SubmitH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintGstH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintStatusH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadDataH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                    if (per.PermitId == PermitNum && (per.STATUS == "NEW" || per.STATUS == "DRF")) {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintStatusH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                    if (per.PermitId == PermitNum && per.STATUS == "CNL") {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#SubmitH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintGstH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CopyH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadDataH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                    if (per.PermitId == PermitNum && per.STATUS == "RFD") {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#SubmitH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintGstH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CopyH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadDataH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintStatusH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                    if (per.PermitId == PermitNum && (per.STATUS == "QRY" || per.STATUS == "REJ")) {
+                        $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#SubmitH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintGstH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DownloadDataH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                        $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                }
+            }
+            if (1 < listCheck.length) {
+                $("#NewBtnH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#SubmitH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#PrintGstH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#PrintRefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#CopyH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#RefundH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#AmendH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#CancelH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#PrintStatusH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#DownloadCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#DownloadDataH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#DeleteAllH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#MergeH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#UnMergeH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                var ch = "true";
+                var valc = TruecheckBox[0]
+                for (var li = 0; li < TruecheckBox.length; li++) {
+                    if (valc == TruecheckBox[li]) {
+                        ch = "true";
+                    } else {
+                        ch = "false";
+                        break;
+                    }
+                }
+                if (ch == "true") {
+                    $("#MergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    $("#UnMergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    $("#PrintCcpH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    if (valc == "APR") {
+                        $("#DownloadCcpH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                        $("#DownloadDataH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    } else if (valc == "NEW") {
+                        $("#SubmitH").prop("disabled", false).css("background-color", 'indianred');
+                        $("#DownloadDataH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                        $("#DeleteAllH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    } else if (valc == "DRF") {
+                        $("#DownloadDataH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                        $("#DeleteAllH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    } else if (valc == "AME") {
+                        $("#DownloadCcpH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    } else if (valc == "CNL" || valc == "RFD" || valc == "QRY" || valc == "REJ" || valc == "ERR" || valc == "DEL") {
+                        $("#PrintCcpH").prop("disabled", true).css("background-color", 'rgb(233, 232, 239)');
+                    }
+                } else {
+                    $("#MergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                    $("#UnMergeH").prop("disabled", false).css("background-color", 'rgb(25, 135, 84)');
+                }
+            }
+        }
+
+        function XmlSubmit() {
+            var checkArr = [];
+            var check = false;
+            let downCheck = document.getElementsByName('inpaymentCheck');
+            for (let i of downCheck) {
+                if (i.checked) {
+                    check = true;
+                    checkArr.push(i.value)
+                }
+            }
+            if (check) {
+                $('#Loading').show();
+                PermitNumber = JSON.stringify(checkArr)
+                $.ajax({
+                    type: "GET",
+                    url: "/InpaymentXml/",
+                    data: {
+                        "PermitNumber": PermitNumber,
+                    },
+                    success: function (data) {
+                        alert("xmldownload")
+                        $('#Loading').hide();
+                    },
+                    error: function () {
+                        alert("Error")
+                        $('#Loading').hide();
+                    }
+                })
+            }
+        }
+
+        function InpaymentPrintGst() {
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    window.location.assign("/PrintGst/" + i.value + "/");
+                }
+            }
+        }
+
+        function InpaymentCopyData(Arg) {
+            const NowDate = new Date();
+            const TOUCHTIME = NowDate.toISOString().slice(0, 19).replace("T", " ");
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    $('#Loading').show();
+                    $.ajax({
+                        type: "POST",
+                        url: '/CopytInpayment/',
+                        dataType: "JSON",
+                        data: {
+                            val: Arg,
+                            Permitid: i.value,
+                            TOUCHTIME: TOUCHTIME,
+                            csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                        },
+                        success: function (response) {
+                            window.location.href = "/InpaymentNew/" + Arg + "/";
+                            $('#Loading').hide();
+                        },
+                        error: function (response) {
+                            $('#Loading').hide();
+                        },
+                    })
+                }
+            }
+        }
+
+        function InpaymentEdit(arg) {
+            $('#Loading').show();
+            $.ajax({
+                type: "POST",
+                url: '/EditInpayment/',
+                dataType: "JSON",
+                data: {
+                    Permitid: arg,
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                },
+                success: function (response) {
+                    $('#Loading').show();
+                    window.location.href = "/InpaymentNew/EDIT/";
+                },
+                error: function (response) {
+                },
+            })
+        }
+
+        function InpaymentShow(arg) {
+            $('#Loading').show();
+            $.ajax({
+                type: "POST",
+                url: '/EditInpayment/',
+                dataType: "JSON",
+                data: {
+                    Permitid: arg,
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                },
+                success: function (response) {
+                    //window.location.href = "/InpaymentNew/SHOW/";
+                    window.open("/InpaymentNew/SHOW/", 'KTT APP', 'width=1900,height=800')
+                    $('#Loading').hide();
+                },
+                error: function (response) {
+                },
+            })
+        }
+
+        function PrintStatus() {
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    window.location.assign("/InpaymentPrintStatus/" + i.value + "/");
+                }
+            }
+        }
+
+        function DownloadCcp() {
+            var checkAr = [];
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    checkAr.push(i.value);
+                }
+            }
+            var data = checkAr.join(",");
+            window.location.assign("/InpaymentDownloadCcpZip/" + data + "/");
+        }
+
+        function DownloadData() {
+            var checkAr = [];
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    checkAr.push(i.value);
+                }
+            }
+            var data = checkAr.join(",");
+            window.location.assign("/InpaymentDownloadData/" + data + "/");
+        }
+
+        function DeleteAll() {
+            var checkAr = [];
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    checkAr.push(i.value);
+                }
+            }
+            var jsonData = JSON.stringify(checkAr);
+            $('#Loading').show();
+            $.ajax({
+                url: "/DeleteAllUrl/",
+                type: "POST",
+                data: {
+                    my_data: jsonData,
+                    csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                },
+                success: function () {
+                    location.reload();
+                    $('#Loading').hide();
+                },
+            });
+        }
+
+        function CpcPdfGenarate() {
+            var checkAr = [];
+            let downCheck = document.getElementsByName("inpaymentCheck");
+            for (let i of downCheck) {
+                if (i.checked) {
+                    checkAr.push(i.value);
+                }
+            }
+            var data = checkAr.join(",");
+            if (checkAr.length > 0) {
+                window.location.assign("/InpaymentCcpPdfUrl/" + data + "/");
+            }
+        }
+
+        function InnonPaymentCheckFunction() {
+            if ($("#InnonPaymentCheck").prop('checked')) {
+                $('#OnclickInnonPayMent').show();
+            } else {
+                $('#OnclickInnonPayMent').hide();
+            }
+        }
+
+        function TransmitDataFunction(val) {
+            console.log("heloo")
+            var checkAr = [];
+            if (val == "Inpayment") {
+                var mailId = $("#MailBoxCopyId").val();
+            } else if (val == "InNonpayment") {
+                var mailId = $("#InNonMailBoxCopyId").val();
+            }
+
+            if (mailId != "--SELECT--") {
+                let downCheck = document.getElementsByName("inpaymentCheck");
+                for (let i of downCheck) {
+                    if (i.checked) {
+                        checkAr.push(i.value);
+                    }
+                }
+                var jsonData = JSON.stringify(checkAr);
+                $('#Loading').show();
+                $.ajax({
+                    url: "/TransmitDataUrl/",
+                    type: "POST",
+                    data: {
+                        my_data: jsonData,
+                        mailId: mailId,
+                        UserName: "{{UserName}}",
+                        csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val(),
+                    },
+                    success: function () {
+                        $("#Loading").hide();
+                        console.log("Hello")
+                        window.location.href = "/InpaymentList/";
+                    },
+                    error: function () {
+                        $('#Loading').hide();
+                        alert("PLEASE SELECT THE TRANSMIT DATA VALUE")
+                    },
+                });
+            }
+        }
+    </script>
+    {% endblock %}
+    <br>
+
+    <script>
+        function updateTime() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            hours = (hours < 10) ? '0' + hours : hours;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+            var timeString = hours + ':' + minutes + ':' + seconds + ' ' + (hours >= 12 ? 'PM' : 'AM');
+
+            document.getElementById('sg-time').innerHTML = "SG TIME:" + timeString;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+</body>
+
+</html>
